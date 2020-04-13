@@ -19,7 +19,7 @@ trait D4SEncoder[T] extends D4SAttributeEncoder[T] {
     AttributeValue.builder().m(encodeJava(item)).build()
   }
 
-  def contramap[T1](f: T1 => T): D4SEncoder[T1] = item => encode(f(item))
+  override def contramap[T1](f: T1 => T): D4SEncoder[T1] = item => encode(f(item))
   def contramap2[T1, A](another: D4SEncoder[T1])(f: A => (T, T1)): D4SEncoder[A] = {
     item =>
       val (t, t1) = f(item)
